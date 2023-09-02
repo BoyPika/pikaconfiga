@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "pikaconfiga",
+  "version": "${version}",
+  "name": "pikaconfiga",
+  "description": "",
+  "authors": ["BoyPika"],
+  "contact": {
+    "repo": "https://github.com/BoyPika/pikaconfiga"
+  },
+  "license": "GPL-3.0",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "net.boypika.pikaconfiga.pikaconfiga"
+    ]
+  },
+  "depends": {
+    "minecraft": "*"
+  }
+}
