@@ -1,6 +1,6 @@
 package net.boypika.pikaconfiga.config;
 
-import sun.nio.cs.ISO_8859_1;
+import net.boypika.pikaconfiga.util.ISO_8859_1;
 
 import java.io.*;
 import java.util.*;
