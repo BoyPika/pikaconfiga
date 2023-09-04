@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "pikaconfiga",
+  "id": "pikaconfig",
   "version": "${version}",
-  "name": "pikaconfiga",
+  "name": "pikaconfig",
   "description": "",
   "authors": ["BoyPika"],
   "contact": {
@@ -17,5 +17,16 @@
   },
   "depends": {
     "minecraft": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [ "library" ],
+      "parent": {
+        "id": "pikaconfig",
+        "name": "BoyPika Config",
+        "description": "Config made by BoyPika for BoyPika",
+        "badges": [ "library" ]
+      }
+    }
   }
 }

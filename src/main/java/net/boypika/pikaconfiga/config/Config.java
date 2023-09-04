@@ -58,7 +58,7 @@ public class Config {
         return Integer.parseInt(this.getString(string, ""));
     }
 
-    public boolean getBoolean(String string, boolean bl) {
+    public boolean setBoolean(String string, boolean bl) {
         try {
             return Boolean.parseBoolean(this.getString(string, "" + bl));
         } catch (Exception var4) {
@@ -67,9 +67,31 @@ public class Config {
         }
     }
 
-    public void setBoolean(String string, boolean bl) {
-        this.properties.setProperty(string, "" + bl);
-        this.save();
+    public boolean getBoolean(String string) {
+        return Boolean.parseBoolean(string);
+    }
+
+    public float setFloat(String string, float fl) {
+        try {
+            return Float.parseFloat(this.getString(string, "" + fl));
+        } catch (Exception var4) {
+            this.properties.setProperty(string, "" + fl);
+            return fl;
+        }
+    }
+    public float getFloat(String string){
+        return Float.parseFloat(string);
+    }
+    public double setDouble(String string, double dl){
+        try {
+            return Double.parseDouble(this.getString(string, "" + dl));
+        } catch (Exception var4) {
+            this.properties.setProperty(string, "" + dl);
+            return dl;
+        }
+    }
+    public double getDouble(String string){
+        return Double.parseDouble(string);
     }
 }
 
