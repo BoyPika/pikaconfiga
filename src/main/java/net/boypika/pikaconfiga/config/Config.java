@@ -34,12 +34,7 @@ public class Config {
 
     }
     public String addComment(String comment) {
-        try {
-            return this.getString("", comment);
-        } catch (Exception var4) {
-            this.properties.setProperty("", comment);
-            return comment;
-        }
+        return (String) this.properties.put("#", comment);
     }
 
     public String getString(String string, String string2) {
