@@ -35,7 +35,7 @@ public class Config {
 
     }
     public String addComment(String comment){
-        return (String) this.properties.setProperty("#", comment);
+        return (String) this.properties.setProperty(null, comment);
     }
 
     public String getString(String string, String string2) {
