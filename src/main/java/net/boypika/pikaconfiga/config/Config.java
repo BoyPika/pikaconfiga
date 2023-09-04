@@ -2,7 +2,6 @@ package net.boypika.pikaconfiga.config;
 
 import java.io.*;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class Config {
     private Properties properties = new Properties();
@@ -34,8 +33,8 @@ public class Config {
         }
 
     }
-    public String addComment(String comment){
-        return (String) this.properties.setProperty(null, comment);
+    public void addComment(String comment) throws IOException {
+        writeComments(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(this.propertiesFile))), comment);
     }
 
     public String getString(String string, String string2) {
@@ -71,6 +70,41 @@ public class Config {
     public void setBoolean(String string, boolean bl) {
         this.properties.setProperty(string, "" + bl);
         this.save();
+    }
+    private static void writeComments(BufferedWriter bw, String comments)
+            throws IOException {
+        HexFormat hex = HexFormat.of().withUpperCase();
+        bw.write("#");
+        int len = comments.length();
+        int current = 0;
+        int last = 0;
+        while (current < len) {
+            char c = comments.charAt(current);
+            if (c > '\u00ff' || c == '\n' || c == '\r') {
+                if (last != current)
+                    bw.write(comments.substring(last, current));
+                if (c > '\u00ff') {
+                    bw.write("\\u");
+                    bw.write(hex.toHexDigits(c));
+                } else {
+                    bw.newLine();
+                    if (c == '\r' &&
+                            current != len - 1 &&
+                            comments.charAt(current + 1) == '\n') {
+                        current++;
+                    }
+                    if (current == len - 1 ||
+                            (comments.charAt(current + 1) != '#' &&
+                                    comments.charAt(current + 1) != '!'))
+                        bw.write("#");
+                }
+                last = current + 1;
+            }
+            current++;
+        }
+        if (last != current)
+            bw.write(comments.substring(last, current));
+        bw.newLine();
     }
 }
 
